@@ -14,10 +14,15 @@ const createProduct = async (product: IProduct): Promise<ResultSetHeader> => {
     throw new HttpException(400, 'Dados inválidos');
   }
   const data = await productModel.createProduct(product);
-  
+  return data;
+};
+
+const getAllProducts = async (): Promise<IProduct[]> => {
+  const data = await productModel.getAllProducts();
   return data;
 };
 
 export default {
   createProduct,
+  getAllProducts,
 };
