@@ -1,5 +1,28 @@
+import IProduct from '../interfaces/product.interface';
 import IUser from '../interfaces/user.interface';
 import HttpException from './http.exceptions';
+
+const name = (product: IProduct) => {
+  if (!product.name) throw new HttpException(400, '"name" is required');
+  if (typeof product.name !== 'string') {
+    throw new HttpException(422, '"name" must be a string');
+  }
+  if (product.name.length <= 2) {
+    throw new HttpException(422, '"name" length must be at least 3 characters long');
+  }
+  return true;
+};
+
+const amount = (product: IProduct) => {
+  if (!product.amount) throw new HttpException(400, '"amount" is required');
+  if (typeof product.amount !== 'string') {
+    throw new HttpException(422, '"amount" must be a string');
+  }
+  if (product.amount.length <= 2) {
+    throw new HttpException(422, '"amount" length must be at least 3 characters long');
+  }
+  return true;
+};
 
 const username = (user: IUser) => {
   if (!user.username) throw new HttpException(400, '"username" is required');
@@ -46,6 +69,8 @@ const password = (user: IUser) => {
 };
 
 export default {
+  name,
+  amount,
   username,
   classe,
   level,

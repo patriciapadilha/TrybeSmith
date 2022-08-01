@@ -4,13 +4,6 @@ import userModel from '../models/userModel';
 import HttpException from '../utils/http.exceptions';
 import validate from '../utils/validate';
 
-// const isValid = (user: IUser) => {
-//   if (!user) return false;
-//   if (typeof user.password !== 'string' || typeof user.classe !== 'string') return false;
-//   if (typeof user.level !== 'number') return false;
-//   return true;
-// };
-
 const createUser = async (user: IUser): Promise<IUser> => {
   validate.username(user);
   validate.password(user);
