@@ -11,7 +11,7 @@ const getAllOrders = async (): Promise<Array<object>> => {
       .map((product) => product.id);
     return { id: el.id, userId: el.userId, productsIds };
   });
-  console.log(typeof OrdersAndProducts, OrdersAndProducts);
+  // console.log(typeof OrdersAndProducts, OrdersAndProducts);
   return OrdersAndProducts;
 };
 
