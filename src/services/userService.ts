@@ -1,3 +1,4 @@
+import ILogin from '../interfaces/login.interface';
 import IUser from '../interfaces/user.interface';
 import userModel from '../models/userModel';
 import HttpException from '../utils/http.exceptions';
@@ -24,6 +25,16 @@ const createUser = async (user: IUser): Promise<IUser> => {
   return newUser;
 };
 
+const userLogin = async (userInfos: ILogin): Promise<any> => {
+  if (!userInfos.username) throw new HttpException(400, '"username" is required');
+  if (!userInfos.password) throw new HttpException(400, '"password" is required');
+  const result = await userModel.userLogin(userInfos);
+  console.log(result);
+  if (result.length === 0) throw new HttpException(401, 'Username or password invalid');
+  return result;
+};
+
 export default {
   createUser,
+  userLogin,
 };
